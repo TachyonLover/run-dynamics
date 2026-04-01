@@ -1,0 +1,29 @@
+[
+    {
+        "lap": "1",
+        "time": "12:11",
+        "distance": 1.0,
+        "avg_pace": "12:11",
+        "avg_hr": 150,
+        "avg_cadence": 155,
+        "cals_burned": 106
+    },
+    {
+        "lap": "2",
+        "time": "11:57",
+        "distance": 1.0,
+        "avg_pace": "11:57",
+        "avg_hr": 156,
+        "avg_cadence": 156,
+        "cals_burned": 107
+    },
+    {
+        "lap": "3",
+        "time": "6:31.3",
+        "distance": 0.55,
+        "avg_pace": "11:46",
+        "avg_hr": 156,
+        "avg_cadence": 155,
+        "cals_burned": 60
+    }
+]

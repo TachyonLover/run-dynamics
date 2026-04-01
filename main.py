@@ -1,5 +1,6 @@
-from gpx_parser import parse_gpx
-from csv_parser import parse_csv
+from backend.gpx_parser import parse_gpx
+from backend.csv_parser import parse_csv
+from backend.export_json import export_json
 
 
 def main():
@@ -9,8 +10,7 @@ def main():
     gpx_data = parse_gpx(gpx)
     csv_data = parse_csv(csv)
 
-    print(gpx_data[1])
-    print(csv_data)
+    export_json(csv_data)
 
 if __name__ == "__main__":
     main()

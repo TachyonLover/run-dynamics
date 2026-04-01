@@ -20,10 +20,10 @@ def parse_csv(csv_file):
             "lap": lap,
             "time": df["time"].iloc[int(lap)-1],
             "distance": float(df["distance"].iloc[int(lap) - 1]),
-            "avg pace": df["avg pace"].iloc[int(lap) - 1],
-            "avg hr": int(df["avg hr"].iloc[int(lap) - 1]),
-            "avg cadence": int(df["avg cad"].iloc[int(lap) - 1]),
-            "cals burned": int(df["cal"].iloc[int(lap) - 1]),
+            "avg_pace": df["avg pace"].iloc[int(lap) - 1],
+            "avg_hr": int(df["avg hr"].iloc[int(lap) - 1]),
+            "avg_cadence": int(df["avg cad"].iloc[int(lap) - 1]),
+            "cals_burned": int(df["cal"].iloc[int(lap) - 1]),
         }
         sum_laps_list.append(lap_data)
 
