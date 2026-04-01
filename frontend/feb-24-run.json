@@ -25,5 +25,14 @@
         "avg_hr": 156,
         "avg_cadence": 155,
         "cals_burned": 60
+    },
+    {
+        "lap": "Summary",
+        "time": "30:40",
+        "distance": 2.55,
+        "avg_pace": "12:00",
+        "avg_hr": 154,
+        "avg_cadence": 155,
+        "cals_burned": 273
     }
 ]
