@@ -8,9 +8,9 @@ def main():
     csv = 'test-data/feb-24-run.csv'
 
     gpx_data = parse_gpx(gpx)
-    csv_data = parse_csv(csv)
+    csv_summary, csv_splits = parse_csv(csv)
 
-    export_json(csv_data)
+    export_json(csv_summary, csv_splits)
 
 if __name__ == "__main__":
     main()

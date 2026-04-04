@@ -12,16 +12,10 @@ def parse_csv(csv_file):
     "CaloriesC": "cal"
     })
 
-    sum_laps_list = []
-    
-    for lap in df["laps"]:
+    splits_list = []
+    summary_row = df[df["laps"] == "Summary"].iloc[0]
 
-        # For now, the "Summary" row is being treated as a lap, but it might be better to handle it separately in the future.
-
-        if lap == "Summary":
-            summary_row = df[df["laps"] == "Summary"].iloc[0]
-            lap_data = {
-                "lap": lap,
+    summary_lap_data = {
                 "time": summary_row["time"],
                 "distance": float(summary_row["distance"]),
                 "avg_pace": summary_row["avg pace"],
@@ -29,17 +23,19 @@ def parse_csv(csv_file):
                 "avg_cadence": int(summary_row["avg cad"]),
                 "cals_burned": int(summary_row["cal"]),
             }
+    
+    splits_rows = df[df["laps"] != "Summary"]
 
-        else:
+    for index, row in splits_rows.iterrows():
             lap_data = {
-                "lap": lap,
-                "time": df["time"].iloc[int(lap)-1],
-                "distance": float(df["distance"].iloc[int(lap) - 1]),
-                "avg_pace": df["avg pace"].iloc[int(lap) - 1],
-                "avg_hr": int(df["avg hr"].iloc[int(lap) - 1]),
-                "avg_cadence": int(df["avg cad"].iloc[int(lap) - 1]),
-                "cals_burned": int(df["cal"].iloc[int(lap) - 1]),
+                "lap": row["laps"],
+                "time": row["time"],
+                "distance": float(row["distance"]),
+                "avg_pace": row["avg pace"],
+                "avg_hr": int(row["avg hr"]),
+                "avg_cadence": int(row["avg cad"]),
+                "cals_burned": int(row["cal"]),
             }
-        sum_laps_list.append(lap_data)
+            splits_list.append(lap_data)
 
-    return sum_laps_list
+    return summary_lap_data, splits_list
