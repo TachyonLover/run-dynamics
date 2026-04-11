@@ -1,24 +1,51 @@
 fetch("feb-24-run.json")
   .then(response => response.json())
   .then(data => {
-    const summary = data.summary;
-    const summaryBox = document.querySelector("#summary-box");
-    
-    summaryBox.innerHTML = `
-      <h2>Run Summary</h2>
-      <p><strong>Total Time:</strong> ${summary.time}</p>
-      <p><strong>Total Distance:</strong> ${summary.distance}</p>
-      <p><strong>Average Pace:</strong> ${summary.avg_pace}</p>
-      <p><strong>Average Heart Rate:</strong> ${summary.avg_hr}</p>
-      <p><strong>Average Cadence:</strong> ${summary.avg_cadence}</p>
-      <p><strong>Calories Burned:</strong> ${summary.cals_burned}</p>
-    `;
-
     console.log(data);
 
-    const tableBody = document.querySelector("#splits-table tbody");
+    const summary = data.summary;
+    const splits = data.splits;
 
-    data.splits.forEach(split => {
+    const summaryBox = document.querySelector("#summary-box");
+    const tableBody = document.querySelector("#splits-table tbody");
+    const toggleBtn = document.querySelector("#toggle-details-btn");
+    const detailsPanel = document.querySelector("#details-panel");
+    const runDate = document.querySelector("#run-date");
+
+    // Optional: update this later when you store real date data in JSON
+    runDate.textContent = "Insert date here";
+
+    summaryBox.innerHTML = `
+      <h2>Run Summary</h2>
+      <div class="summary-stats">
+        <div class="summary-item">
+          <span class="summary-label">Total Time</span>
+          <span class="summary-value">${summary.time}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Total Distance</span>
+          <span class="summary-value">${summary.distance} mi</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Average Pace</span>
+          <span class="summary-value">${summary.avg_pace}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Average HR</span>
+          <span class="summary-value">${summary.avg_hr}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Average Cadence</span>
+          <span class="summary-value">${summary.avg_cadence}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Calories Burned</span>
+          <span class="summary-value">${summary.cals_burned}</span>
+        </div>
+      </div>
+    `;
+
+    splits.forEach(split => {
       const row = document.createElement("tr");
 
       row.innerHTML = `
@@ -33,4 +60,17 @@ fetch("feb-24-run.json")
 
       tableBody.appendChild(row);
     });
+
+    toggleBtn.addEventListener("click", () => {
+      detailsPanel.classList.toggle("hidden");
+
+      if (detailsPanel.classList.contains("hidden")) {
+        toggleBtn.textContent = "More";
+      } else {
+        toggleBtn.textContent = "Less";
+      }
+    });
+  })
+  .catch(error => {
+    console.error("Error loading run data:", error);
   });
